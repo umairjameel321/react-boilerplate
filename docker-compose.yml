@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      PUBLIC_KEY: 23lkjl
+      PUBLIC_SECRET: sldkgjslkdgj
+  app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8000:80"
+
