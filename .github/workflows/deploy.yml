@@ -25,8 +25,18 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy
+    - name: Deploy to prod url
+      if: github.ref == 'refs/heads/main' # main is the branch name where new code is pushed
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
+        # publish_branch: prod-gh-pages  // by default it will create gh-pages branch and push everything of dist folder inside it.
+        
+    # - name: Deploy to dev url
+    #   if: github.ref == 'refs/heads/develop'
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: ./dist
+    #     # publish_branch: dev-gh-pages
